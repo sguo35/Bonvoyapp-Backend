@@ -37,7 +37,7 @@ const mongoUrl = MONGODB_URI;
 (<any>mongoose).Promise = bluebird;
 mongoose.connect(mongoUrl, {useMongoClient: true}).then(
   () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
-).catch(err => {
+).catch((err: any) => {
   console.log("MongoDB connection error. Please make sure MongoDB is running. " + err);
   // process.exit();
 });
@@ -64,11 +64,11 @@ app.use(passport.session());
 app.use(flash());
 app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
-app.use((req, res, next) => {
+app.use((req: any, res: any, next: any) => {
   res.locals.user = req.user;
   next();
 });
-app.use((req, res, next) => {
+app.use((req: any, res: any, next: any) => {
   // After successful login, redirect back to the intended page
   if (!req.user &&
     req.path !== "/login" &&
