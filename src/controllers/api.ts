@@ -16,6 +16,27 @@ export let getApi = (req: Request, res: Response) => {
   });
 };
 
+interface GetVacation extends Request {
+  tastes: Array<string>,
+  location: string,
+  interests: Array<string>,
+  startTime: string,
+  endTime: string,
+  budget: number
+};
+
+export let getVacation = async (req: GetVacation, res: Response) => {
+  // query Yelp for each of the tastes and interests, according to the budget guidelines
+
+  // call our optimization algorithm to take the Yelp areas of attraction, time frame to create itinerary
+
+  // return the 2D array result
+  const result = {};
+  res.json(result);
+  res.statusCode(200);
+  res.end();
+}
+
 /**
  * GET /api/facebook
  * Facebook API example.
