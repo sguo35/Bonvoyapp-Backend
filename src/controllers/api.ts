@@ -95,6 +95,7 @@ export let getVacation = async (req: GetVacation, res: Response) => {
     if (!err) {
       startAirport = response.json.results[0];
       //console.log(startAirport);
+      //console.log(destinationAirport);
       let airTransport = {
         startAirport: startAirport,
         endAirport: destinationAirport,
@@ -192,8 +193,9 @@ const optimize = (attractions: Array<any>, breakfastRestaurants: Array<any>, res
             {dayIt[objKey][i].price = priceLookup['attraction'] * dayIt[objKey][i].price.length;}
           else
             {dayIt[objKey][i].price = priceLookup['attraction'] * Math.random() * 3 + 1;}
-          if (dayIt[objKey][i].price == null) {
-            console.log("TESTESTTESTTEST");
+          if (!dayIt[objKey][i].price) {
+            //console.log("test1");
+            dayIt[objKey][i].price = priceLookup['attraction'] * Math.random() * 3 + 1;
           }
           moneySpent += dayIt[objKey][i].price;
         }
@@ -204,8 +206,9 @@ const optimize = (attractions: Array<any>, breakfastRestaurants: Array<any>, res
         else
           {dayIt[objKey].price = priceLookup['restaurant'] * Math.random() * 3 + 1;}
 
-        if (dayIt[objKey].price == null) {
-          console.log("TESTESTTESTTEST");
+        if (!dayIt[objKey].price) {
+          //console.log("test2");
+          dayIt[objKey].price = priceLookup['restaurant'] * Math.random() * 3 + 1;
         }
         moneySpent += dayIt[objKey].price;
       } 
@@ -217,6 +220,10 @@ const optimize = (attractions: Array<any>, breakfastRestaurants: Array<any>, res
           {dayIt[objKey].price = priceLookup['restaurant'] * dayIt[objKey].price.length;}
         else
           {dayIt[objKey].price = priceLookup['restaurant'] * Math.random() * 3 + 1;}
+          if (!dayIt[objKey].price) {
+            //console.log("test3");
+            dayIt[objKey].price = priceLookup['restaurant'] * Math.random() * 3 + 1;
+          }
         moneySpent += dayIt[objKey].price;
       }
     }
