@@ -98,7 +98,7 @@ export let getVacation = async (req: GetVacation, res: Response) => {
       let airTransport = {
         startAirport: startAirport,
         endAirport: destinationAirport,
-        price: Math.round((Math.floor(Math.random() * 23) + 20)
+        price: Math.round((Math.floor(Math.random() * 13) + 8)
           * Math.sqrt((
             Math.pow(startAirport.geometry.location.lng - destinationAirport.geometry.location.lng, 2) +
             Math.pow(startAirport.geometry.location.lat - destinationAirport.geometry.location.lat, 2))))
