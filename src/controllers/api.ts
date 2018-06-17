@@ -80,15 +80,10 @@ export let getVacation = async (req: GetVacation, res: Response) => {
   let destinationAirport: any = "";
   googleMapsClient.places({
     query: `international airport near ${req.body.location}`
-  }, function (err: any, response: any) {
+  }, async function (err: any, response: any) {
     if (!err) {
       destinationAirport = response.json.results[0];
-    } else {
-      console.log(err);
-    }
-  });
-
-  let startAirport: any = "";
+      let startAirport: any = "";
   googleMapsClient.places({
     query: `international airport near ${req.body.startLocation}`
   }, async function (err: any, response: any) {
@@ -118,6 +113,12 @@ export let getVacation = async (req: GetVacation, res: Response) => {
       res.end();
     }
   });
+    } else {
+      console.log(err);
+    }
+  });
+
+  
 
 };
 
